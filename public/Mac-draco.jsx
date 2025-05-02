@@ -5,17 +5,50 @@ Command: npx gltfjsx@6.5.3 public/mac-draco.glb
 
 import React from "react";
 import { useGLTF } from "@react-three/drei";
-import * as THREE from "three";
+import { useRef, useState, useEffect } from "react";
 import { a as three } from "@react-spring/three";
+import { useFrame } from "@react-three/fiber";
+import * as THREE from "three";
 
 export function Mac({ open, hinge, ...props }) {
   const { nodes, materials } = useGLTF("/mac-draco.glb");
+  const group = useRef();
+
+  const [hovered, setHovered] = useState(false);
+  useEffect(
+    () => void (document.body.style.cursor = hovered ? "pointer" : "auto"),
+    [hovered]
+  );
+  // Make it float in the air when it's opened
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    group.current.rotation.x = THREE.MathUtils.lerp(
+      group.current.rotation.x,
+      open ? Math.cos(t / 10) / 10 + 0.35 : 0,
+      0.1
+    );
+    group.current.rotation.y = THREE.MathUtils.lerp(
+      group.current.rotation.y,
+      open ? Math.sin(t / 10) / 4 : 0,
+      0.1
+    );
+    group.current.rotation.z = THREE.MathUtils.lerp(
+      group.current.rotation.z,
+      open ? Math.sin(t / 10) / 10 : 0,
+      0.1
+    );
+    group.current.position.y = THREE.MathUtils.lerp(
+      group.current.position.y,
+      open ? (-2 + Math.sin(t)) / 3 : -4.3,
+      0.1
+    );
+  });
 
   return (
-    <group {...props} dispose={null}>
-      <three.group rotation-x={hinge} position={[0, -0.04, 0.41]}>
+    <group {...props} ref={group} dispose={null}>
+      <three.group rotation-x={hinge} position={[0, -0.04, 0.491]}>
         <group position={[0.002, -0.038, 0.414]} rotation={[0.014, 0, 0]}>
-          <group position={[0, 2.965, -0.13]} rotation={[Math.PI / 2, 0, 0]}>
+          <group position={[0, 2.965, -0.63]} rotation={[Math.PI / 2, 0, 0]}>
             <mesh
               geometry={nodes.Cube008.geometry}
               material={materials.aluminium}
@@ -31,6 +64,7 @@ export function Mac({ open, hinge, ...props }) {
           </group>
         </group>
       </three.group>
+
       <mesh
         geometry={nodes.keyboard.geometry}
         material={materials.keys}

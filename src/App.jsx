@@ -7,8 +7,8 @@ import { Route } from "wouter";
 import { useSpring } from "@react-spring/core";
 import { OrbitControls, ContactShadows } from "@react-three/drei";
 import { Mac } from "../public/Mac-draco";
-import { a as three } from "@react-spring/three";
 import { a as web } from "@react-spring/web";
+import { PerspectiveCamera } from "@react-three/drei";
 
 function App() {
   const { ErrorBoundary, didCatch, error } = useErrorBoundary();
@@ -18,7 +18,7 @@ function App() {
   return (
     <web.main
       style={{
-        background: props.open.to([0, 1], ["#f0f0f0", "#d25578"]),
+        background: props.open.to([0, 1], ["#f0f0f0", "#e1f5ff"]),
       }}
     >
       <div
@@ -28,20 +28,38 @@ function App() {
           overflow: "hidden",
         }}
       >
+        <web.h1
+          style={{
+            opacity: props.open.to([0, 1], [1, 0]),
+            transform: props.open.to(
+              (o) => `translate3d(-50%,${o * 50 - 100}px,0)`
+            ),
+          }}
+        >
+          click to open
+        </web.h1>
         <ErrorBoundary>
           <Route path="/">
             <Canvas
               className="flex justify-center items-center h-screen w-screen"
-              camera={{ position: [0, 4, -12] }}
+              camera={{ position: [0, -3.5, 12.5] }}
+              dpr={[1, 3]}
             >
               <ambientLight />
+
               <Suspense fallback={null}>
-                <Mac
-                  rotation={[0, Math.PI, 0]}
-                  open={open}
-                  hinge={props.open.to([0, 1], [1.575, -0.425])}
-                />
+                <group
+                  rotation={[0, 0, 0]}
+                  onClick={(e) => (e.stopPropagation(), setOpen(!open))}
+                >
+                  <Mac
+                    rotation={[1.15, Math.PI, 1]}
+                    open={open}
+                    hinge={props.open.to([0, 1], [1.575, -0.425])}
+                  />
+                </group>
               </Suspense>
+
               <directionalLight
                 position={[0, 5, -2]}
                 scale={[3, 3, 3]}
