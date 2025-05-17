@@ -14,7 +14,6 @@ div {
   ); */
   margin: 0;
   border: 0;
-  padding-top: 3rem;
 }
 
 * {
@@ -50,4 +49,13 @@ h1 {
   white-space: nowrap;
   color: black;
   font-family: Playwrite;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
