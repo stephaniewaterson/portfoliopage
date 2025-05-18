@@ -9,6 +9,10 @@ import {
   OrbitControls,
   ContactShadows,
   MeshTransmissionMaterial,
+  Text,
+  ScrollControls,
+  Scroll,
+  useScroll,
 } from "@react-three/drei";
 import { Mac } from "../public/Mac-draco";
 import { a as web } from "@react-spring/web";
@@ -108,54 +112,87 @@ function App({ children }) {
               camera={{ position: [0, -3.5, 12.5] }}
               dpr={[1, 3]}
             >
-              <ambientLight />
+              <ScrollControls damping={0.1} pages={3}>
+                <ambientLight />
 
-              <ContactShadows
-                resolution={512}
-                position={[0, -0.8, 0]}
-                opacity={1}
-                scale={10}
-                blur={2}
-                far={0.8}
-              />
+                <ContactShadows
+                  resolution={512}
+                  position={[0, -0.8, 0]}
+                  opacity={1}
+                  scale={10}
+                  blur={2}
+                  far={0.8}
+                />
 
-              <Suspense fallback={null}>
-                <group
-                  rotation={[0, 0, 0]}
-                  onClick={(e) => (e.stopPropagation(), setOpen(!open))}
-                >
-                  <Selector>
-                    <Mac
-                      rotation={[1.15, Math.PI, 1]}
-                      open={open}
-                      hinge={props.open.to([0, 1], [1.575, -0.425])}
-                      onPointerEnter={() => setHoveredState(true)}
-                    />
-                  </Selector>
-                </group>
-                {hoveredState && open && <Overlay />}
-              </Suspense>
+                <Suspense fallback={null}>
+                  <group
+                    rotation={[0, 0, 0]}
+                    onClick={(e) => (e.stopPropagation(), setOpen(!open))}
+                  >
+                    <Selector>
+                      <Scroll>
+                        <Mac
+                          rotation={[1.15, Math.PI, 1]}
+                          open={open}
+                          hinge={props.open.to([0, 1], [1.575, -0.425])}
+                          onPointerEnter={() => setHoveredState(true)}
+                        />
+                      </Scroll>
+                    </Selector>
+                  </group>
 
-              <directionalLight
-                position={[0, 5, -2]}
-                scale={[3, 3, 3]}
-                intensity={Math.PI}
-                color="#FFFFFF"
-              />
-              <directionalLight
-                position={[2, 2, 2]}
-                scale={[3, 3, 3]}
-                intensity={Math.PI}
-                color="#FFFFFF"
-              />
-              {/* <OrbitControls /> */}
-              <ContactShadows
-                position={[0, -4.5, 0]}
-                opacity={0.4}
-                scale={20}
-                blur={1.75}
-                far={4.5}
-              />
+                  <Scroll>
+                    {open && (
+                      <Text
+                        style={{
+                          position: "absolute",
+                          top: "60vh",
+                          left: "0.5em",
+                        }}
+                        className="name"
+                        position={[2, 12, -7]}
+                        fontSize={6}
+                      >
+                        Stephanie Waterson
+                        <meshStandardMaterial
+                          color="#ffffff"
+                          toneMapped={false}
+                        />
+                      </Text>
+                    )}
+                    {hoveredState && open && (
+                      <Overlay
+                        style={{
+                          position: "absolute",
+                          top: "60vh",
+                          left: "0.5em",
+                        }}
+                      />
+                    )}
+                  </Scroll>
+                </Suspense>
+
+                <directionalLight
+                  position={[0, 5, -2]}
+                  scale={[3, 3, 3]}
+                  intensity={Math.PI}
+                  color="#FFFFFF"
+                />
+                <directionalLight
+                  position={[2, 2, 2]}
+                  scale={[3, 3, 3]}
+                  intensity={Math.PI}
+                  color="#FFFFFF"
+                />
+                {/* <OrbitControls /> */}
+                <ContactShadows
+                  position={[0, -4.5, 0]}
+                  opacity={0.4}
+                  scale={20}
+                  blur={1.75}
+                  far={4.5}
+                />
+              </ScrollControls>
             </Canvas>
           </Route>
         </ErrorBoundary>

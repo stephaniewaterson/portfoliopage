@@ -49,9 +49,6 @@ export function Overlay() {
           }}
         >
           <div className="info">
-            <h1>
-              Stephanie <br></br> Waterson
-            </h1>
             <h3>
               <span className="accent">Developer</span>
             </h3>
