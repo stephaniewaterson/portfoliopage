@@ -52,6 +52,7 @@ export function Overlay() {
             <h3>
               <span className="accent">Developer</span>
             </h3>
+
             <h4>London</h4>
           </div>
         </div>

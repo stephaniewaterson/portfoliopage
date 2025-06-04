@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
+
 import { Html } from "@react-three/drei";
+import "./Interface.css";
+import { useState } from "react";
 
 const Section = (props) => {
   const { children } = props;
@@ -14,8 +17,8 @@ const Section = (props) => {
         opacity: 1,
         y: 0,
         transition: {
-          duration: 1,
-          delay: 0.6,
+          duration: 0.5,
+          delay: 0.2,
         },
       }}
     >
@@ -27,15 +30,15 @@ const Section = (props) => {
 const skills = [
   {
     title: "Threejs / React Three Fiber",
-    level: 80,
+    level: 50,
   },
   {
     title: "React / React Native",
-    level: 90,
+    level: 80,
   },
   {
     title: "Nodejs",
-    level: 90,
+    level: 80,
   },
   {
     title: "Typescript",
@@ -48,74 +51,36 @@ const skills = [
 ];
 const languages = [
   {
-    title: "🇫🇷 French",
+    title: "🇬🇧 English",
     level: 100,
   },
   {
-    title: "🇺🇸 English",
-    level: 80,
+    title: "🇪🇸 Spanish",
+    level: 90,
   },
   {
-    title: "🇯🇵 Japanese",
+    title: "🇱🇧 Arabic",
     level: 20,
   },
 ];
 
+export const Interface = () => {
+  <div className="interface">
+    <SkillsSection />
+  </div>;
+};
+
 export const SkillsSection = () => {
   return (
-    <Html>
-      <Section>
-        <motion.div whileInView={"visible"}>
-          <h2 className="text-5xl font-bold">Skills</h2>
-          <div className=" mt-8 space-y-4">
-            {skills.map((skill, index) => (
-              <div className="w-64" key={index}>
-                <motion.h3
-                  className="text-xl font-bold text-gray-800"
-                  initial={{
-                    opacity: 0,
-                  }}
-                  variants={{
-                    visible: {
-                      opacity: 1,
-                      transition: {
-                        duration: 1,
-                        delay: 1 + index * 0.2,
-                      },
-                    },
-                  }}
-                >
-                  {skill.title}
-                </motion.h3>
-                <div className="h-2 w-full bg-gray-200 rounded-full mt-2">
-                  <motion.div
-                    className="h-full bg-indigo-500 rounded-full "
-                    style={{ width: `${skill.level}%` }}
-                    initial={{
-                      scaleX: 0,
-                      originX: 0,
-                    }}
-                    variants={{
-                      visible: {
-                        scaleX: 1,
-                        transition: {
-                          duration: 1,
-                          delay: 1 + index * 0.2,
-                        },
-                      },
-                    }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-          <div>
-            <h2 className="text-5xl font-bold mt-10">Languages</h2>
-            <div className=" mt-8 space-y-4">
-              {languages.map((lng, index) => (
-                <div className="w-64" key={index}>
+    <>
+      <Html>
+        <Section className="skills">
+          <motion.div whileInView={"visible"}>
+            <h2>Skills</h2>
+            <div>
+              {skills.map((skill, index) => (
+                <div key={index}>
                   <motion.h3
-                    className="text-xl font-bold text-gray-800"
                     initial={{
                       opacity: 0,
                     }}
@@ -124,17 +89,16 @@ export const SkillsSection = () => {
                         opacity: 1,
                         transition: {
                           duration: 1,
-                          delay: 2 + index * 0.2,
+                          delay: 1 + index * 0.2,
                         },
                       },
                     }}
                   >
-                    {lng.title}
+                    {skill.title}
                   </motion.h3>
-                  <div className="h-2 w-full bg-gray-200 rounded-full mt-2">
+                  <div>
                     <motion.div
-                      className="h-full bg-indigo-500 rounded-full "
-                      style={{ width: `${lng.level}%` }}
+                      style={{ width: `${skill.level}%` }}
                       initial={{
                         scaleX: 0,
                         originX: 0,
@@ -144,7 +108,7 @@ export const SkillsSection = () => {
                           scaleX: 1,
                           transition: {
                             duration: 1,
-                            delay: 2 + index * 0.2,
+                            delay: 1 + index * 0.2,
                           },
                         },
                       }}
@@ -153,9 +117,52 @@ export const SkillsSection = () => {
                 </div>
               ))}
             </div>
-          </div>
-        </motion.div>
-      </Section>
-    </Html>
+            <div>
+              <h2>Languages</h2>
+              <div>
+                {languages.map((lng, index) => (
+                  <div key={index}>
+                    <motion.h3
+                      initial={{
+                        opacity: 0,
+                      }}
+                      variants={{
+                        visible: {
+                          opacity: 1,
+                          transition: {
+                            duration: 1,
+                            delay: 2 + index * 0.2,
+                          },
+                        },
+                      }}
+                    >
+                      {lng.title}
+                    </motion.h3>
+                    <div>
+                      <motion.div
+                        style={{ width: `${lng.level}%` }}
+                        initial={{
+                          scaleX: 0,
+                          originX: 0,
+                        }}
+                        variants={{
+                          visible: {
+                            scaleX: 1,
+                            transition: {
+                              duration: 1,
+                              delay: 2 + index * 0.2,
+                            },
+                          },
+                        }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </Section>
+      </Html>
+    </>
   );
 };

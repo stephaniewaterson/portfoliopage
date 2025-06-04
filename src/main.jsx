@@ -7,6 +7,5 @@ import { Overlay } from "./components/Overlay/Overlay.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
-    {/* <Overlay /> */}
   </React.StrictMode>
 );
