@@ -1,5 +1,26 @@
 .skills {
+}
+.skills__box1 {
+  padding-right: 10rem;
+  width: 20rem;
+}
+
+.skills__title {
   color: white;
+  font-size: 2rem;
+  padding-top: 1rem;
+}
+.skills__name {
+  color: white;
+  font-size: 1.25rem;
+}
+
+.skills__bar {
+  color: white;
+  height: 1.5rem;
+  background-color: rgb(71, 147, 192);
+  color: white;
+  border-radius: calc(infinity * 1px);
 }
 
 .interface {

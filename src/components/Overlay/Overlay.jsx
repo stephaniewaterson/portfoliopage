@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useStore } from "../Store/Store";
 import { Html } from "@react-three/drei";
 import "./Overlay.css";
+import { Mouse } from "lucide-react";
 
 const container = {
   hidden: { opacity: 0, height: 0, transition: { staggerChildren: 0.05 } },
@@ -54,6 +55,9 @@ export function Overlay() {
             </h3>
 
             <h4>London</h4>
+            <div className="icon">
+              <Mouse />
+            </div>
           </div>
         </div>
       </Html>

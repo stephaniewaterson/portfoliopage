@@ -24,6 +24,7 @@ import { ScrollManage } from "./components/ScrollManager/ScrollManager";
 import { framerMotionConfig } from "./components/Config/Config";
 
 import { SpaceMan } from "../public/Outhere_space_buddy";
+
 extend({ Overlay });
 
 function Experience() {
@@ -142,7 +143,7 @@ function App({ children }) {
               dpr={[1, 3]}
               gl={{ antialias: false }}
             >
-              <ScrollControls damping={0.1} pages={3}>
+              <ScrollControls damping={0.5} pages={3}>
                 <ambientLight />
 
                 <ContactShadows
@@ -197,11 +198,10 @@ function App({ children }) {
                           }}
                         />
                       )}
-                      <Text className="arrow"></Text>
                     </group>
-                    <group position={[0, -25, 0]}>
+                    <group position={[0, -24, 0]}>
                       <SkillsSection />
-                      <SpaceMan position={[9, 5, 0]} scale={5} />
+                      <SpaceMan position={[9, 7, 0]} scale={5} />
                     </group>
                   </Suspense>
                 </Scroll>

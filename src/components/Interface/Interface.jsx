@@ -73,55 +73,18 @@ export const Interface = () => {
 export const SkillsSection = () => {
   return (
     <>
-      <Html>
-        <Section className="skills">
-          <motion.div whileInView={"visible"}>
-            <h2>Skills</h2>
-            <div>
-              {skills.map((skill, index) => (
-                <div key={index}>
-                  <motion.h3
-                    initial={{
-                      opacity: 0,
-                    }}
-                    variants={{
-                      visible: {
-                        opacity: 1,
-                        transition: {
-                          duration: 1,
-                          delay: 1 + index * 0.2,
-                        },
-                      },
-                    }}
-                  >
-                    {skill.title}
-                  </motion.h3>
-                  <div>
-                    <motion.div
-                      style={{ width: `${skill.level}%` }}
-                      initial={{
-                        scaleX: 0,
-                        originX: 0,
-                      }}
-                      variants={{
-                        visible: {
-                          scaleX: 1,
-                          transition: {
-                            duration: 1,
-                            delay: 1 + index * 0.2,
-                          },
-                        },
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div>
-              <h2>Languages</h2>
+      <Html className="skills" position={[-9, 0, 0]}>
+        <Section className="skills__section">
+          <motion.div
+            className="skills__div"
+            whileInView={"visible"}
+            animate={{ display: "flex" }}
+          >
+            <div className="skills__box1">
+              <h2 className="skills__title">Skills</h2>
               <div>
-                {languages.map((lng, index) => (
-                  <div key={index}>
+                {skills.map((skill, index) => (
+                  <div className="skills__name" key={index}>
                     <motion.h3
                       initial={{
                         opacity: 0,
@@ -131,16 +94,16 @@ export const SkillsSection = () => {
                           opacity: 1,
                           transition: {
                             duration: 1,
-                            delay: 2 + index * 0.2,
+                            delay: 1 + index * 0.2,
                           },
                         },
                       }}
                     >
-                      {lng.title}
+                      {skill.title}
                     </motion.h3>
-                    <div>
+                    <div className="skills__bar">
                       <motion.div
-                        style={{ width: `${lng.level}%` }}
+                        style={{ width: `${skill.level}%` }}
                         initial={{
                           scaleX: 0,
                           originX: 0,
@@ -150,7 +113,7 @@ export const SkillsSection = () => {
                             scaleX: 1,
                             transition: {
                               duration: 1,
-                              delay: 2 + index * 0.2,
+                              delay: 1 + index * 0.2,
                             },
                           },
                         }}
@@ -158,6 +121,51 @@ export const SkillsSection = () => {
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+            <div>
+              <div className="skills_box2">
+                <h2 className="skills__title">Languages</h2>
+                <div>
+                  {languages.map((lng, index) => (
+                    <div className="skills__name" key={index}>
+                      <motion.h3
+                        initial={{
+                          opacity: 0,
+                        }}
+                        variants={{
+                          visible: {
+                            opacity: 1,
+                            transition: {
+                              duration: 1,
+                              delay: 2 + index * 0.2,
+                            },
+                          },
+                        }}
+                      >
+                        {lng.title}
+                      </motion.h3>
+                      <div className="skills__bar">
+                        <motion.div
+                          style={{ width: `${lng.level}%` }}
+                          initial={{
+                            scaleX: 0,
+                            originX: 0,
+                          }}
+                          variants={{
+                            visible: {
+                              scaleX: 1,
+                              transition: {
+                                duration: 1,
+                                delay: 2 + index * 0.2,
+                              },
+                            },
+                          }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </motion.div>
