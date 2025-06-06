@@ -18,7 +18,8 @@
 .skills__title {
   color: white;
   font-size: 2rem;
-  padding-top: 1rem;
+  /* padding-top: 1rem; */
+  padding: 0;
 }
 .skills__name {
   color: white;
@@ -35,5 +36,10 @@
 .interface {
   position: flex;
   align-items: center;
+  color: white;
+}
+
+.other {
+  animation: fade-in 10s;
   color: white;
 }

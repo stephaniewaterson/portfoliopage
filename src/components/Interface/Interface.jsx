@@ -48,6 +48,10 @@ const skills = [
     title: "3D Modeling",
     level: 30,
   },
+  {
+    title: "Python",
+    level: 70,
+  },
 ];
 const languages = [
   {
@@ -171,6 +175,10 @@ export const SkillsSection = () => {
               </div>
             </div>
           </motion.div>
+          <h3 className="other">
+            Other: MySQL, REST APIs, Agile Development, User Authentication,
+            OAuth, GitHub, Salsa Dancing.
+          </h3>
         </Section>
       </Html>
     </>

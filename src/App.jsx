@@ -24,6 +24,7 @@ import { ScrollManage } from "./components/ScrollManager/ScrollManager";
 import { framerMotionConfig } from "./components/Config/Config";
 
 import { SpaceMan } from "../public/Outhere_space_buddy";
+import { Item } from "./components/Projects/Projects";
 
 extend({ Overlay });
 
@@ -142,6 +143,7 @@ function App({ children }) {
               camera={{ position: [0, -3.5, 12.5] }}
               dpr={[1, 3]}
               gl={{ antialias: false }}
+              onPointerMissed={() => (state.clicked = null)}
             >
               <ScrollControls damping={0.5} pages={3}>
                 <ambientLight />
@@ -202,6 +204,9 @@ function App({ children }) {
                     <group position={[0, -24, 0]}>
                       <SkillsSection />
                       {open && <SpaceMan position={[9, 7, 0]} scale={6} />}
+                    </group>
+                    <group position={[0, -44, 0]}>
+                      <Item />
                     </group>
                   </Suspense>
                 </Scroll>
