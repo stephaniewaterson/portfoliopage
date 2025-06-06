@@ -1,8 +1,18 @@
 .skills {
 }
+
+.skills__box2 {
+  width: 15rem;
+}
 .skills__box1 {
-  padding-right: 10rem;
-  width: 20rem;
+  margin-right: 5rem;
+  width: 15rem;
+}
+
+.skills__progress {
+  height: 100%;
+  background-color: rgb(237, 69, 86);
+  border-radius: calc(infinity * 1px);
 }
 
 .skills__title {
@@ -16,10 +26,9 @@
 }
 
 .skills__bar {
-  color: white;
   height: 1.5rem;
-  background-color: rgb(71, 147, 192);
-  color: white;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
   border-radius: calc(infinity * 1px);
 }
 

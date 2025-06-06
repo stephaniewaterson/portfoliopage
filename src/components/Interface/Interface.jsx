@@ -29,10 +29,6 @@ const Section = (props) => {
 
 const skills = [
   {
-    title: "Threejs / React Three Fiber",
-    level: 50,
-  },
-  {
     title: "React / React Native",
     level: 80,
   },
@@ -41,12 +37,16 @@ const skills = [
     level: 80,
   },
   {
+    title: "Threejs / React Three Fiber",
+    level: 60,
+  },
+  {
     title: "Typescript",
     level: 60,
   },
   {
     title: "3D Modeling",
-    level: 40,
+    level: 30,
   },
 ];
 const languages = [
@@ -60,7 +60,7 @@ const languages = [
   },
   {
     title: "🇱🇧 Arabic",
-    level: 20,
+    level: 25,
   },
 ];
 
@@ -103,6 +103,7 @@ export const SkillsSection = () => {
                     </motion.h3>
                     <div className="skills__bar">
                       <motion.div
+                        className="skills__progress"
                         style={{ width: `${skill.level}%` }}
                         initial={{
                           scaleX: 0,
@@ -147,6 +148,7 @@ export const SkillsSection = () => {
                       </motion.h3>
                       <div className="skills__bar">
                         <motion.div
+                          className="skills__progress"
                           style={{ width: `${lng.level}%` }}
                           initial={{
                             scaleX: 0,

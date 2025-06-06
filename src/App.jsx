@@ -114,7 +114,7 @@ function App({ children }) {
   return (
     <web.main
       style={{
-        background: props.open.to([0, 1], ["#f0f0f0", "#ff5c5c"]),
+        background: props.open.to([0, 1], ["#f0f0f0", "#a5aab0"]),
       }}
     >
       <div
@@ -201,7 +201,7 @@ function App({ children }) {
                     </group>
                     <group position={[0, -24, 0]}>
                       <SkillsSection />
-                      <SpaceMan position={[9, 7, 0]} scale={5} />
+                      {open && <SpaceMan position={[9, 7, 0]} scale={6} />}
                     </group>
                   </Suspense>
                 </Scroll>
