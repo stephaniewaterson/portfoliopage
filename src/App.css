@@ -59,3 +59,14 @@ h1 {
     opacity: 1;
   }
 }
+
+.image {
+  width: 20rem;
+  height: 20rem;
+  position: relative;
+}
+
+.projects__text {
+  font-size: 3rem;
+  width: 30rem;
+}

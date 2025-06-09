@@ -20,11 +20,8 @@ import { useStore } from "../src/components/Store/Store";
 import { Overlay } from "./components/Overlay/Overlay";
 import { SkillsSection } from "./components/Interface/Interface";
 import useWindowDimensions from "./components/Viewport/Viewport";
-import { ScrollManage } from "./components/ScrollManager/ScrollManager";
-import { framerMotionConfig } from "./components/Config/Config";
-
+import { Items } from "./components/Projects/Projects";
 import { SpaceMan } from "../public/Outhere_space_buddy";
-import { Item } from "./components/Projects/Projects";
 
 extend({ Overlay });
 
@@ -143,9 +140,8 @@ function App({ children }) {
               camera={{ position: [0, -3.5, 12.5] }}
               dpr={[1, 3]}
               gl={{ antialias: false }}
-              onPointerMissed={() => (state.clicked = null)}
             >
-              <ScrollControls damping={0.5} pages={3}>
+              <ScrollControls damping={0.5} pages={2.5}>
                 <ambientLight />
 
                 <ContactShadows
@@ -205,11 +201,14 @@ function App({ children }) {
                       <SkillsSection />
                       {open && <SpaceMan position={[9, 7, 0]} scale={6} />}
                     </group>
-                    <group position={[0, -44, 0]}>
-                      <Item />
+                    <group position={[0, -28, 0]}>
+                      <Items />
                     </group>
                   </Suspense>
                 </Scroll>
+                {/* <Scroll html style={{ width: "100%" }}> */}
+
+                {/* </Scroll> */}
                 <directionalLight
                   position={[0, 5, -2]}
                   scale={[3, 3, 3]}
