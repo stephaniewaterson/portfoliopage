@@ -176,7 +176,7 @@ function App({ children }) {
                     <Html className="Item__title" position={[-10, -64, 0]}>
                       Social media language learning app
                     </Html>
-                    <Html className="Item__title" position={[2, -64, 0]}>
+                    <Html className="Item__title" position={[3, -64, 0]}>
                       Space model and flight game
                     </Html>
                   </Suspense>
