@@ -48,7 +48,7 @@ h1 {
   letter-spacing: -0.045em;
   white-space: nowrap;
   color: black;
-  font-family: Playwrite;
+  font-family: "OleoScript";
 }
 
 @keyframes fade-in {
@@ -69,4 +69,19 @@ h1 {
 .projects__text {
   font-size: 3rem;
   width: 30rem;
+}
+
+.name {
+  font-family: "OleoScript";
+  size: 0.7rem;
+  padding: 0 0rem 30rem 0rem;
+  color: white;
+  position: -webkit-sticky;
+}
+
+.Item__title {
+  color: white;
+  font-size: 3rem;
+  font-family: "OleoScript";
+  width: 35rem;
 }

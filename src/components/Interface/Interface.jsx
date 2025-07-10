@@ -44,10 +44,7 @@ const skills = [
     title: "Typescript",
     level: 60,
   },
-  {
-    title: "3D Modeling",
-    level: 30,
-  },
+
   {
     title: "Python",
     level: 70,

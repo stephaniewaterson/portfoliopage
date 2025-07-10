@@ -54,7 +54,7 @@ export function Overlay() {
               <span className="accent">Developer</span>
             </h3>
 
-            <h4>London</h4>
+            <h4 className="accent_2">London</h4>
             <div className="icon">
               <Mouse />
             </div>

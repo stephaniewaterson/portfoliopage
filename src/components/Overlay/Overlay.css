@@ -26,12 +26,16 @@ li {
 .info h1 {
   animation: fade-in 8s;
   font-size: 5rem;
-  padding: 0rem 0rem 15rem 50rem;
+  padding: 0rem 0rem 15rem 0rem;
 }
 
 .accent {
-  -webkit-text-stroke: 1px black;
+  -webkit-text-stroke: 1px white;
   color: transparent;
+}
+
+.accent_2 {
+  color: white;
 }
 
 .info h3 {
@@ -40,7 +44,8 @@ li {
   letter-spacing: -4px;
   line-height: 1em;
   margin: 0;
-  padding: 10rem 20rem 0 15rem;
+  padding: 10rem 20rem 0 17rem;
+  font-family: "OleoScript";
 }
 
 .info h4 {
@@ -48,11 +53,13 @@ li {
   font-size: 2em;
   letter-spacing: -1px;
   margin: 0.8rem 0;
-  padding: 1rem 2rem 0 15rem;
+  padding: 1rem 2rem 0 17rem;
   animation: fade-in 8s;
+  font-family: "OleoScript";
 }
 
 .icon {
   animation: fade-in 20s;
   /* animation-delay: 5s; */
+  color: white;
 }

@@ -1,10 +1,19 @@
 import "./App.css";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Suspense, useState, useRef, useEffect } from "react";
+import { Canvas, useFrame, extend } from "@react-three/fiber";
+import {
+  Suspense,
+  useState,
+  useRef,
+  useMemo,
+  useLayoutEffect,
+  Component,
+} from "react";
 import { useErrorBoundary } from "use-error-boundary";
-import { extend } from "@react-three/fiber";
 import { Route } from "wouter";
 import { useSpring } from "@react-spring/core";
+import "./styles/partials/_typography.css";
+import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
+
 import {
   ContactShadows,
   MeshTransmissionMaterial,
@@ -19,45 +28,19 @@ import { easing } from "maath";
 import { useStore } from "../src/components/Store/Store";
 import { Overlay } from "./components/Overlay/Overlay";
 import { SkillsSection } from "./components/Interface/Interface";
-import useWindowDimensions from "./components/Viewport/Viewport";
 import { Items } from "./components/Projects/Projects";
 import { SpaceMan } from "../public/Outhere_space_buddy";
+import { Html } from "@react-three/drei";
 
 extend({ Overlay });
-
-function Experience() {
-  const { height, width } = useThree((state) => state.viewport);
-  const data = useScroll();
-  const group = useRef();
-
-  useFrame(() => {
-    group.current.children[0].material.zoom = 1 + data.range(0, 1 / 3) / 3;
-    group.current.children[1].material.zoom = 1 + data.range(0, 1 / 3) / 3;
-    group.current.children[2].material.zoom =
-      1 + data.range(1.15 / 3, 1 / 3) / 3;
-    group.current.children[3].material.zoom =
-      1 + data.range(1.15 / 3, 1 / 3) / 2;
-    group.current.children[4].material.zoom =
-      1 + data.range(1.25 / 3, 1 / 3) / 1;
-    group.current.children[5].material.zoom =
-      1 + data.range(1.8 / 3, 1 / 3) / 3;
-    group.current.children[6].material.zoom =
-      1 + (1 - data.range(2 / 3, 1 / 3)) / 3;
-    group.current.children[7].material.zoom =
-      1 + (1 - data.range(2 / 3, 1 / 3)) / 3;
-    group.current.children[8].material.zoom =
-      1 + data.range(1.15 / 3, 1 / 3) / 3;
-    group.current.children[9].material.zoom =
-      1 + data.range(1.15 / 3, 1 / 3) / 3;
-  });
-}
+extend({ TextGeometry });
 
 function App({ children }) {
   const { ErrorBoundary, didCatch, error } = useErrorBoundary();
   const [open, setOpen] = useState(false);
   const [hoveredState, setHoveredState] = useState(false);
+  const [visible, setVisible] = useState(true);
   const props = useSpring({ open: Number(open) });
-  const viewport = useWindowDimensions();
 
   function Selector({ children }) {
     const ref = useRef();
@@ -112,7 +95,7 @@ function App({ children }) {
   return (
     <web.main
       style={{
-        background: props.open.to([0, 1], ["#f0f0f0", "#a5aab0"]),
+        background: props.open.to([0, 1], ["#f0f0f0", "#1b1e22"]),
       }}
     >
       <div
@@ -130,14 +113,14 @@ function App({ children }) {
             ),
           }}
         >
-          click to open
+          Click to open
         </web.h1>
 
         <ErrorBoundary>
           <Route path="/">
             <Canvas
               className="flex justify-center items-center h-screen w-screen"
-              camera={{ position: [0, -3.5, 12.5] }}
+              camera={{ position: [0, -1.5, 12.5] }}
               dpr={[1, 3]}
               gl={{ antialias: false }}
             >
@@ -157,36 +140,21 @@ function App({ children }) {
                     <group
                       rotation={[0, 0, 0]}
                       onClick={(e) => (e.stopPropagation(), setOpen(!open))}
-                      position={[0, 0, 0]}
+                      position={[0, 0.5, 0]}
                     >
                       <Selector>
                         <Mac
-                          rotation={[1.15, Math.PI, 1]}
+                          rotation={[1.65, Math.PI, 1]}
                           open={open}
                           hinge={props.open.to([0, 1], [1.575, -0.425])}
                           onPointerEnter={() => setHoveredState(true)}
                         />
                       </Selector>
-
                       {open && (
-                        <Text
-                          style={{
-                            position: "absolute",
-                            top: "60vh",
-                            left: "0.5em",
-                          }}
-                          className="name"
-                          position={[2, 12, -7]}
-                          fontSize={6}
-                        >
-                          Stephanie Waterson
-                          <meshStandardMaterial
-                            color="#ffffff"
-                            toneMapped={false}
-                          />
-                        </Text>
+                        <Html position={[0, 7, 0]}>
+                          <h1 style={{ color: "white" }}>Stephanie Waterson</h1>
+                        </Html>
                       )}
-
                       {hoveredState && open && (
                         <Overlay
                           style={{
@@ -199,16 +167,21 @@ function App({ children }) {
                     </group>
                     <group position={[0, -24, 0]}>
                       <SkillsSection />
+
                       {open && <SpaceMan position={[9, 7, 0]} scale={6} />}
                     </group>
-                    <group position={[0, -28, 0]}>
+                    <group position={[0, -45, 0]}>
                       <Items />
                     </group>
+                    <Html className="Item__title" position={[-10, -64, 0]}>
+                      Social media language learning app
+                    </Html>
+                    <Html className="Item__title" position={[2, -64, 0]}>
+                      Space model and flight game
+                    </Html>
                   </Suspense>
                 </Scroll>
-                {/* <Scroll html style={{ width: "100%" }}> */}
 
-                {/* </Scroll> */}
                 <directionalLight
                   position={[0, 5, -2]}
                   scale={[3, 3, 3]}

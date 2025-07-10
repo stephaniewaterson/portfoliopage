@@ -1,4 +1,5 @@
 .skills {
+  font-family: "OleoScript";
 }
 
 .skills__box2 {
@@ -7,6 +8,7 @@
 .skills__box1 {
   margin-right: 5rem;
   width: 15rem;
+  padding: 0;
 }
 
 .skills__progress {
@@ -18,8 +20,6 @@
 .skills__title {
   color: white;
   font-size: 2rem;
-  /* padding-top: 1rem; */
-  padding: 0;
 }
 .skills__name {
   color: white;
