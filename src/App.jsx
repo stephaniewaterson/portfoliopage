@@ -124,7 +124,7 @@ function App({ children }) {
               dpr={[1, 3]}
               gl={{ antialias: false }}
             >
-              <ScrollControls damping={0.5} pages={2.5}>
+              <ScrollControls damping={0.5} pages={3}>
                 <ambientLight />
 
                 <ContactShadows
@@ -173,10 +173,10 @@ function App({ children }) {
                     <group position={[0, -45, 0]}>
                       <Items />
                     </group>
-                    <Html className="Item__title" position={[-10, -64, 0]}>
+                    <Html className="Item__title" position={[-10, -61.5, 0]}>
                       Social media language learning app
                     </Html>
-                    <Html className="Item__title" position={[3, -64, 0]}>
+                    <Html className="Item__title" position={[3, -61.5, 0]}>
                       Space model and flight game
                     </Html>
                   </Suspense>
