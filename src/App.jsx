@@ -124,7 +124,7 @@ function App({ children }) {
               dpr={[1, 3]}
               gl={{ antialias: false }}
             >
-              <ScrollControls damping={0.5} pages={3}>
+              <ScrollControls horizontal damping={0.5} pages={2.5}>
                 <ambientLight />
 
                 <ContactShadows
@@ -165,20 +165,20 @@ function App({ children }) {
                         />
                       )}
                     </group>
-                    <group position={[0, -24, 0]}>
+                    <group position={[50, 10, 0]}>
                       <SkillsSection />
 
-                      {open && <SpaceMan position={[9, 7, 0]} scale={6} />}
+                      {open && <SpaceMan position={[-18, -15, -2]} scale={6} />}
                     </group>
-                    <group position={[0, -45, 0]}>
+                    <group position={[75, 12, 0]}>
                       <Items />
                     </group>
-                    <Html className="Item__title" position={[-10, -61.5, 0]}>
-                      Social media language learning app
+                    <Html className="Item__title" position={[85, -5, 0]}>
+                      Projects
                     </Html>
-                    <Html className="Item__title" position={[3, -61.5, 0]}>
+                    {/* <Html className="Item__title" position={[90, -5, 0]}>
                       Space model and flight game
-                    </Html>
+                    </Html> */}
                   </Suspense>
                 </Scroll>
 
