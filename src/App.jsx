@@ -259,7 +259,7 @@ function App({ children }) {
                     <group position={[60, 10, 0]}>
                       <SkillsSection />
 
-                      {open && <SpaceMan position={[-, -16, 2]} scale={5} />}
+                      {open && <SpaceMan position={[-5, -16, 2]} scale={5} />}
                     </group>
                     <group position={[30, 12, 0]} className="items">
                       <Items />
