@@ -72,7 +72,7 @@ function ScrollJumper({ targetPage, onDone }) {
     if (!el) return;
     const totalWidth = el.scrollWidth - el.clientWidth;
     // pages={3.2} so each "page" = 1/3.2 of total scroll width
-    const dest = (targetPage / 2.5) * totalWidth;
+    const dest = (targetPage / 3) * totalWidth;
     el.scrollLeft += (dest - el.scrollLeft) * 0.06;
     if (Math.abs(el.scrollLeft - dest) < 1) {
       el.scrollLeft = dest;
@@ -171,8 +171,8 @@ function App({ children }) {
         {open && (
           <nav style={navStyles}>
             {[
-              { label: "Projects", page: 0.65 },
-              { label: "Skills", page: 2 },
+              { label: "Projects", page: 0.5 },
+              { label: "Skills", page: 3 },
             ].map(({ label, page }) => (
               <button
                 key={label}
@@ -203,7 +203,7 @@ function App({ children }) {
               <ScrollControls
                 horizontal
                 damping={0.9}
-                pages={open ? 2.5 : 0}
+                pages={open ? 3 : 0}
                 // max
                 // speed={0.2}
                 prepend={true}
@@ -259,7 +259,7 @@ function App({ children }) {
                     <group position={[60, 10, 0]}>
                       <SkillsSection />
 
-                      {open && <SpaceMan position={[-10, -15, 2]} scale={5} />}
+                      {open && <SpaceMan position={[-, -16, 2]} scale={5} />}
                     </group>
                     <group position={[30, 12, 0]} className="items">
                       <Items />
