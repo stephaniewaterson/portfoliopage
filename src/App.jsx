@@ -35,11 +35,62 @@ import { Html } from "@react-three/drei";
 extend({ Overlay });
 extend({ TextGeometry });
 
+// ── Nav styles ─────────────────────────────────────────────────────────────
+const navStyles = {
+  position: "fixed",
+  bottom: "2rem",
+  left: "50%",
+  transform: "translateX(-50%)",
+  display: "flex",
+  gap: "1rem",
+  zIndex: 100,
+  pointerEvents: "all",
+};
+
+const navBtnStyles = {
+  background: "rgba(255,255,255,0.12)",
+  border: "1px solid rgba(255,255,255,0.3)",
+  color: "#fff",
+  padding: "0.55rem 1.4rem",
+  borderRadius: "999px",
+  fontSize: "0.85rem",
+  letterSpacing: "0.08em",
+  cursor: "pointer",
+  backdropFilter: "blur(10px)",
+  transition: "background 0.2s, transform 0.15s",
+  fontFamily: "inherit",
+};
+
+// ── ScrollTo helper (lives inside Canvas so it can read the scroll el) ──────
+function ScrollJumper({ targetPage, onDone }) {
+  const scroll = useScroll();
+
+  useFrame(() => {
+    if (targetPage === null) return;
+    // scroll.el is the underlying <div> that ScrollControls uses
+    const el = scroll.el;
+    if (!el) return;
+    const totalWidth = el.scrollWidth - el.clientWidth;
+    // pages={3.2} so each "page" = 1/3.2 of total scroll width
+    const dest = (targetPage / 2.5) * totalWidth;
+    el.scrollLeft += (dest - el.scrollLeft) * 0.06;
+    if (Math.abs(el.scrollLeft - dest) < 1) {
+      el.scrollLeft = dest;
+      onDone();
+    }
+  });
+
+  return null;
+}
+
 function App({ children }) {
   const { ErrorBoundary, didCatch, error } = useErrorBoundary();
   const [open, setOpen] = useState(false);
   const [hoveredState, setHoveredState] = useState(false);
-  const [visible, setVisible] = useState(true);
+
+  // null = idle, number = scroll to that page index
+  const [scrollTarget, setScrollTarget] = useState(null);
+
   const props = useSpring({ open: Number(open) });
 
   function Selector({ children }) {
@@ -56,7 +107,7 @@ function App({ children }) {
       );
       easing.damp3(
         ref.current.scale,
-        store.openOverlay ? 4 : 0.01,
+        store.openOverlay ? 0.5 : 0.01,
         store.openOverlay ? 0.5 : 0.2,
         delta
       );
@@ -78,6 +129,7 @@ function App({ children }) {
             thickness={0.1}
             roughness={0.4}
             toneMapped={true}
+            background="white"
           />
         </mesh>
         <group
@@ -116,6 +168,30 @@ function App({ children }) {
           Click to open
         </web.h1>
 
+        {open && (
+          <nav style={navStyles}>
+            {[
+              { label: "Projects", page: 0.65 },
+              { label: "Skills", page: 2 },
+            ].map(({ label, page }) => (
+              <button
+                key={label}
+                style={navBtnStyles}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "rgba(255,255,255,0.25)";
+                  e.currentTarget.style.transform = "scale(1.05)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "rgba(255,255,255,0.12)";
+                  e.currentTarget.style.transform = "scale(1)";
+                }}
+                onClick={() => setScrollTarget(page)}
+              >
+                {label}
+              </button>
+            ))}
+          </nav>
+        )}
         <ErrorBoundary>
           <Route path="/">
             <Canvas
@@ -124,7 +200,22 @@ function App({ children }) {
               dpr={[1, 3]}
               gl={{ antialias: false }}
             >
-              <ScrollControls horizontal damping={0.5} pages={2.5}>
+              <ScrollControls
+                horizontal
+                damping={0.9}
+                pages={open ? 2.5 : 0}
+                // max
+                // speed={0.2}
+                prepend={true}
+                distance={0.5}
+              >
+                {/* Scroll jumper - only active when a target is set */}
+                {scrollTarget !== null && (
+                  <ScrollJumper
+                    targetPage={scrollTarget}
+                    onDone={() => setScrollTarget(null)}
+                  />
+                )}
                 <ambientLight />
 
                 <ContactShadows
@@ -165,20 +256,14 @@ function App({ children }) {
                         />
                       )}
                     </group>
-                    <group position={[50, 10, 0]}>
+                    <group position={[60, 10, 0]}>
                       <SkillsSection />
 
-                      {open && <SpaceMan position={[-18, -15, -2]} scale={6} />}
+                      {open && <SpaceMan position={[-10, -15, 2]} scale={5} />}
                     </group>
-                    <group position={[75, 12, 0]}>
+                    <group position={[30, 12, 0]} className="items">
                       <Items />
                     </group>
-                    <Html className="Item__title" position={[85, -5, 0]}>
-                      Projects
-                    </Html>
-                    {/* <Html className="Item__title" position={[90, -5, 0]}>
-                      Space model and flight game
-                    </Html> */}
                   </Suspense>
                 </Scroll>
 

@@ -43,3 +43,215 @@
   animation: fade-in 10s;
   color: white;
 }
+
+.skills__div {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+.skills__title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.75rem;
+}
+
+.skills__name {
+  margin-bottom: 1rem;
+}
+
+.skills__name h3 {
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+}
+
+.skills__percent {
+  color: #888;
+  font-size: 0.75rem;
+}
+
+/* Slim bar — was thick, now 4px */
+.skills__bar {
+  height: 4px; /* ← was probably ~12-16px */
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 99px;
+  overflow: hidden;
+  width: 260px;
+}
+
+.skills__progress {
+  height: 100%;
+  background: linear-gradient(90deg, #e8453c, #ff8a65);
+  border-radius: 99px;
+}
+
+/* Language pills */
+.lang__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.lang__pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  min-width: 180px;
+}
+
+.lang__name {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.lang__level {
+  font-size: 0.7rem;
+  color: #888;
+}
+
+.other {
+  font-size: 0.75rem;
+  color: #666;
+  margin-top: 1.2rem;
+  line-height: 1.7;
+}
+
+/* Titles */
+.skills__title {
+  font-size: 2.5rem; /* was 2rem */
+}
+
+/* Skill names */
+.skills__name h3 {
+  font-size: 1rem; /* was 0.85rem */
+}
+
+.skills__percent {
+  font-size: 0.85rem; /* was 0.75rem */
+}
+
+/* Bars — slightly thicker too */
+.skills__bar {
+  height: 6px; /* was 4px */
+  width: 320px; /* was 260px */
+}
+
+/* Language pills */
+.lang__name {
+  font-size: 1rem; /* was 0.9rem */
+}
+
+.lang__level {
+  font-size: 0.8rem; /* was 0.7rem */
+}
+
+.lang__pill {
+  min-width: 220px; /* was 180px */
+  padding: 0.8rem 1.2rem; /* was 0.6rem 1rem */
+}
+
+/* Other skills line */
+.other {
+  font-size: 0.85rem; /* was 0.75rem */
+}
+
+/* Shrink the languages column */
+.skills_box2 {
+  flex: 0 0 280px; /* ← fixed narrower width instead of flex:1 */
+}
+
+.lang__pill {
+  padding: 0.8rem 1.2rem; /* ← was 1.2rem 1.8rem */
+}
+
+.lang__name {
+  font-size: 1rem; /* ← was clamp(1rem, 1.8vw, 1.3rem) */
+}
+
+.lang__level {
+  font-size: 0.75rem; /* ← was clamp(0.75rem, 1vw, 0.85rem) */
+}
+
+/* Title same size as skills for consistency */
+.skills_box2 .skills__title {
+  font-size: 2rem; /* ← slightly smaller than skills title */
+}
+
+.skills__title {
+  font-size: clamp(2.5rem, 5vw, 4rem); /* scales with viewport */
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 1rem;
+}
+
+.skills__name {
+  margin-bottom: 1.8rem; /* more breathing room between skills */
+}
+
+.skills__name h3 {
+  font-size: clamp(1rem, 1.8vw, 1.4rem);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.skills__percent {
+  color: #888;
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+}
+
+.skills__bar {
+  height: 6px;
+  width: 100%; /* fills the column instead of fixed 260px */
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.skills__progress {
+  height: 100%;
+  background: linear-gradient(90deg, #e8453c, #ff8a65);
+  border-radius: 99px;
+}
+
+.lang__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.lang__pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 1.2rem 1.8rem; /* bigger pills */
+  width: 100%;
+}
+
+.lang__name {
+  font-size: clamp(1rem, 1.8vw, 1.4rem);
+  font-weight: 500;
+}
+
+.lang__level {
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  color: #888;
+}
+
+.other {
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  color: #666;
+  margin-top: 2rem;
+  line-height: 1.8;
+}
